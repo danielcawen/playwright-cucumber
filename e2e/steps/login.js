@@ -1,5 +1,4 @@
 const { Given, When, Then, setDefaultTimeout } = require("@cucumber/cucumber");
-const { expect } = require("@playwright/test");
 
 const { login, verifyErrorMessage } = require("../pages/login");
 const { verifyLoggedUser } = require("../pages/sidebar");
@@ -15,5 +14,5 @@ When('I set a valid username and a valid password', async function () {
 });
 
 Then('I should be redirected to the dashboard page', async function () {
-    await verifyLoggedUser(this.page, `@${process.env.VALID_USERNAME}`, false);
+    await verifyLoggedUser(this.page, `@${process.env.VALID_USERNAME}`, this.isMobile);
 });

@@ -11,7 +11,7 @@ Before(async function () {
 
     // Select the browser engine
     const engine = { chromium, firefox, webkit }[browserType] || chromium;
-    
+
     const width = parseInt(process.env.WIDTH, 10) || 1200;
     const height = parseInt(process.env.HEIGHT, 10) || 780;
 
@@ -19,6 +19,7 @@ Before(async function () {
     const context = await browser.newContext({
         viewport: { width, height }
     });
+    this.isMobile = width < 768;
     this.page = await context.newPage();
 });
 
